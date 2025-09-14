@@ -5,84 +5,50 @@
 <title>OrderFood</title>
 <style>
 html, body {
-  height: 100%;           /* <- ensure full viewport height */
+  height: 100%;
   margin: 0;
   font-family: Arial, sans-serif;
   scroll-behavior: auto;
   scroll-snap-type: y mandatory;
 }
 
-/* full container */
 .parent {
   width: 100%;
   min-height: 100vh;
   background: linear-gradient(to right,#ffffb3,#ff99ff);
   box-sizing: border-box;
-  scroll-snap-align: start;  
+  scroll-snap-align: start;
 }
 
-/* header */
 header {
-  line-height: 5px;
+  line-height: 1.2;
   background-color: #ff6666;
   color: black;
   text-align: center;
   padding: 20px;
   font-size: 30px;
-  word-spacing: 55px;
+  word-spacing: 30px;
   font-weight: bold;
 }
+header img {height:30px;width:auto;margin-right:10px;}
+header a {color:black;text-decoration:none;}
 
-/* header menu-bar img */
-header img {
-  height: 30px;
-  width: auto;
-  margin-right: 10px;
-}
-header a:link{
-color:black;
-text-decoration: none;
-}
-header a:visited{
-color:black;
-}
-
-/* content under header */
+/* main content split */
 .content {
   display: flex;
   width: 100%;
-  height: calc(100vh - 76px); /* full height minus header */
+  height: calc(100vh - 76px);
 }
-
-.left{
+.left, .right {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px;      /* keep space around text */
+  padding: 40px;
   box-sizing: border-box;
 }
-.left h1 {
-  font-size: 40px;     /* bigger heading */
-  font-weight: 700;    /* extra-bold weight */
-  letter-spacing: 2px;  /* optional spacing for style */
-}
-
-.left p {
-  font-size: 22px;      /* larger paragraph text */
-  font-weight: 200;    /* semi-bold paragraph */
-  line-height: 1.2    /* good readability */
-}
-.right{
-  flex:1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;         /* remove the gap for the image */
-  box-sizing: border-box;
-}
-
-/* make right image fill its half completely */
+.left h1 {font-size:40px;font-weight:700;letter-spacing:2px;}
+.left p {font-size:22px;font-weight:200;line-height:1.3;}
 .right img {
   width: 100%;
   height: 100%;
@@ -90,47 +56,51 @@ color:black;
   display: block;
 }
 
-/for second section/
-.images-section {
+/* second section */
+#secondpage {
+  height: 100vh;
+  background-image: linear-gradient(to right, #fef7ad, #feb3ee);
   display: flex;
-  flex-direction: column;        /* stack images vertically */
-  justify-content: center;       /* center vertically in section */
-  align-items: center;           /* center horizontally */
-  gap: 20px;                     /* space between images */
+  justify-content: space-evenly;
+  align-items: center;
 }
-
-.small-image {
-  width: 200px;                  /* smaller width */
-  height: 170px;          /* keep aspect ratio */
+#secondpage .left, #secondpage .right {
+  width: 50%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+#secondpage img {
+  width: 100%;
+  height: auto;
   object-fit: cover;
 }
 
-      #secondpage {
-        height: 100vh;
+/* ---------- MOBILE RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  header {font-size: 22px; word-spacing: 15px; padding:15px;}
+  .content {flex-direction: column; height: auto;}
+  .left, .right {width: 100%; padding:20px;}
+  .left h1 {font-size: 28px;}
+  .left p {font-size: 18px;}
+  .right img {height: auto; max-width: 100%;}
 
-        background-image: linear-gradient(to right, #fef7ad, #feb3ee);
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-      }
+  #secondpage {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+  #secondpage .left, #secondpage .right {
+    width: 100%;
+    height: auto;
+    padding: 10px 0;
+  }
+  #secondpage .right main {
+    width: 90%;
+    left: 0;
+  }
+}
 
-      .left {
-        height: 100vh;
-        width: 50vw;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        padding: 10px;
-      }
-
-      .right {
-        height: 100vh;
-        width: 50vw;
-        display: flex;
-        justify-content: left;
-        align-items: center;
-        padding: 10px;
-      }
 
       .left aside {
         padding: 20px;
@@ -263,3 +233,4 @@ color:black;
     </div>
 </body>
 </html>
+
