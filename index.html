@@ -1,252 +1,200 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OrderFood</title>
-<style>
-html, body {
-  height: 100%;
-  margin: 0;
-  font-family: Arial, sans-serif;
-  scroll-behavior: auto;
-  scroll-snap-type: y mandatory;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Simpotel</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; overflow-x: hidden; }
 
-.parent {
-  width: 100%;
-  min-height: 100vh;
-  background: linear-gradient(to right,#ffffb3,#ff99ff);
-  box-sizing: border-box;
-  scroll-snap-align: start;
-}
+    /* ===== Navbar ===== */
+    .nav-header {
+      background-color: #ff7070;
+      padding: 12px 0;
+      text-align: center;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: center;   /* ✅ keep centered */
+      align-items: center;
+      gap: clamp(10px, 4vw, 60px);
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: clamp(12px, 2vw, 18px);
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #000;
+      white-space: nowrap;
+      padding: 6px 10px;
+      transition: all 0.3s ease;
+    }
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 5px;
+    }
+    .hamburger { font-size: 18px; font-weight: bold; }
 
-header {
-  line-height: 1.2;
-  background-color: #ff6666;
-  color: black;
-  text-align: center;
-  padding: 20px;
-  font-size: 30px;
-  word-spacing: 30px;
-  font-weight: bold;
-}
-header img {height:30px;width:auto;margin-right:10px;}
-header a {color:black;text-decoration:none;}
+    /* ===== First Page ===== */
+    #firstpage {
+      display: flex;
+      flex-direction: row;
+      height: 90vh;  /* ✅ fixed height like design */
+    }
+    #left, #right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .gradient-textbox {
+      background: rgba(255,255,255,0.7);
+      padding: 14px;
+      border-radius: 8px;
+      font-size: clamp(12px, 2vw, 16px);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+    #left {
+      background: linear-gradient(to right, #fdf2a5, #ffc6c7);
+      padding: 20px;
+    }
+    #container { max-width: 80%; }
+    .lorem-title-small {
+      font-size: clamp(20px, 4vw, 40px);
+      font-weight: 900;
+      margin-bottom: 12px;
+      color: #000;
+    }
+    
+    button {
+      background: #ff6b6b;
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: clamp(11px, 2vw, 14px);
+      border-radius: 5px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
 
-/* main content split */
-.content {
-  display: flex;
-  width: 100%;
-  height: calc(100vh - 76px);
-}
-.left, .right {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-  box-sizing: border-box;
-}
-.left h1 {font-size:40px;font-weight:700;letter-spacing:2px;}
-.left p {font-size:22px;font-weight:200;line-height:1.3;}
-.right img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+    /* ✅ Right image fills full half */
+    #right {
+      height: 100%;
+      width: 100%;
+    }
+    #right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;   /* ✅ cover full space */
+      border-radius: 0;    /* no rounding */
+    }
 
-/* second section */
-#secondpage {
-  height: 100vh;
-  background-image: linear-gradient(to right, #fef7ad, #feb3ee);
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-#secondpage .left, #secondpage .right {
-  width: 50%;
-  height: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-}
-#secondpage img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
+    /* ===== Second Page ===== */
+    #secondpage {
+      display: flex;
+      flex-direction: row;
+      padding: 15px;
+      gap: 15px;
+      background: linear-gradient(to right, #fef7ad, #feb3ee);
+    }
+    .left {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .left img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    .right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .right main {
+      background: #ff7070;
+      padding: 14px;
+      border-radius: 8px;
+      max-width: 300px;
+    }
+    .right main h2 {
+      font-size: clamp(16px, 3vw, 24px);
+      font-weight: 900;
+      color: #000;
+      margin: 8px 0;
+    }
+    .right main section { font-size: clamp(12px, 2vw, 14px); }
 
-
-/* ---------- MOBILE RESPONSIVE ---------- */
-@media (max-width: 768px) {
-  header {font-size: 22px; word-spacing: 15px; padding:15px;}
-  
-  /* keep first page side-by-side */
-  .content {
-    flex-direction: row;       /* ✅ stay side-by-side */
-    height: auto;
-  }
-  .left, .right {
-    width: 50%;                /* each takes half screen */
-    padding: 20px 10px;
-  }
-  .left h1 {font-size: 24px;}
-  .left p {font-size: 16px;}
-  .right img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-
-  /* second page can still stack */
-  #secondpage {
-    flex-direction: column;
-    height: auto;
-    padding: 20px;
-  }
-  #secondpage .left, #secondpage .right {
-    width: 100%;
-    height: auto;
-    padding: 10px 0;
-  }
-  #secondpage .right main {
-    width: 90%;
-    left: 0;
-  }
-}
-
-
-
-      .left aside {
-        padding: 20px;
-        height: 70%;
-        width: 80%;
-        display: flex;
-        padding: 10px;
-      }
-
-      aside section {
-        margin: 10px;
-        height: 100%;
-        width: 50%;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        flex-direction: column;
-      }
-
-      aside section main {
-        padding: 10px;
-        height: 50%;
-        width: 100%;
-      }
-
-      #largepic{
-        padding: 12px;
-      }
-
-      .right main {
-        display: flex;
-        justify-content: left;
-        align-items: left;
-        flex-direction: column;
-        height: 35%;
-        width: 65%;
-
-        position: relative;
-        left: -50px;
-        background-color: #ff7070;
-      }
-
-      .right main section {
-        padding: 10px;
-      }
-	.right img {
-  margin-top: -20px;  /* pull image up equal to header height */
-}
-
-
-
-
-
-</style>
+    /* ===== Responsive tweaks ===== */
+    @media (max-width: 768px) {
+      #firstpage, #secondpage { flex-direction: column; }
+      #firstpage { height: auto; } /* stack gracefully */
+      .left img { height: 120px; }
+    }
+    @media (max-width: 480px) {
+      .nav-links { gap: 8px; }
+      .nav-links a { font-size: 12px; }
+      button { font-size: 11px; padding: 6px 10px; }
+      .lorem-title-small { font-size: 18px; }
+      .gradient-textbox { font-size: 12px; }
+      .left img { height: 100px; }
+    }
+  </style>
 </head>
 <body>
-
-<div class="parent">
-  <header>
-    <a href="#">Home</a>&nbsp;<a href="#">Order</a>&nbsp;<a href="#">Food</a>&nbsp;<a href="#">Restaurant</a>&nbsp;
-<a href="#">Testimonials</a>&nbsp;<a href="#">ContactUs</a>
-    <img src="menu-bar.png" alt="Menu Bar">
+  <header class="nav-header">
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Order</a></li>
+        <li><a href="#">Food</a></li>
+        <li><a href="#">Restaurant</a></li>
+        <li><a href="#">Testimonials</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><span class="hamburger">≡</span></li>
+      </ul>
+    </nav>
   </header>
 
-  <div class="content">
+  <div id="firstpage">
+    <div id="left">
+      <div id="container">
+        <h2 class="lorem-title-small">LOREM IPSUM</h2>
+        <div class="gradient-textbox">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id est vitae
+          dolor rhoncus tristique. Maecenas metus quam, rhoncus euismod lorem in,
+          sollicitudin viverra eros. Donec dictum luctus quam ut tristique.
+        </div>
+        <button>Click Me</button>
+      </div>
+    </div>
+    <div id="right">
+      <img src="burger.jpg" alt="burger"/>
+    </div>
+  </div>
+
+  <div id="secondpage">
     <div class="left">
-      <div>
-        <h1>L O R E M&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I P S U M </h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus<br>
-        id est vitae dolor rhoncus tristique. Maecenas metus quam,<br>
-        rhoncus euismod lorem in, sollicitudin viverra eros. Donec<br>
-        dictum luctus quam ut tristique. Curabitur nec faucibus purus.<br>
-        Quisque congue sem nec justo mollis, in tincidunt erat pretium.<br>
-        Sed pulvinar, massa ac porta viverra.</p><br><br>
-	<button style="background-color: #ff8080; color: white; padding: 20px 90px; border: none; cursor: pointer;font-size: 15px;">
-  Click Me
-</button>
-      </div>
+      <img src="stag.jpg" alt="stag"/>
+      <img src="food.jpg" alt="food"/>
+      <img src="jana.jpg" alt="jana"/>
+      <img src="food.jpg" alt="food2"/>
     </div>
-<div class="right">
-<img src="pexels-robin-stickel-70497.jpg"" alt="image here">
-</div>
-</div>
-</div>
-<div class="parent">
-   <div id="secondpage">
-      <div class="left">
-        <aside>
-          <section>
-            <main>
-              <img src="./pexels-rachel-claire-6752433.jpg" alt="" height="100%" width="100%"  />
-            </main>
-            <main>
-              <img
-                src="./pexels-eva-bronzini-6141651.jpg"
-                alt=""
-                height="100%"
-                width="100%"
-              />
-            </main>
-          </section>
-          <section id="largepic">
-            <img
-              src="./pexels-mister-mister-3434523.jpg"
-              alt=""
-              height="100%"
-              width="100%"
-            />
-          </section>
-        </aside>
-      </div>
-      <div class="right">
-        <main>
-          <section>LOREM IPSUM</section>
-          <section>
-            <h2 class="lorem-title-small" style="text-align: left">
-              LOREM IPSUM SET ADMEMIR
-            </h2>
-          </section>
-          <section style="position: relative; top: -30px">
-            click
-            <span
-              ><img
-                src="./icons8-arrow-30.png"
-                alt=""
-                style="height: 20px; width: 20px; padding-left: 5px" /></span>
-          </section>
-        </main>
-      </div>
+    <div class="right">
+      <main>
+        <section>LOREM IPSUM</section>
+        <h2>LOREM IPSUM SET ADMEMIR</h2>
+        <section>Click →</section>
+      </main>
     </div>
+  </div>
 </body>
 </html>
-
-
