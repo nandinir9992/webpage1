@@ -1,88 +1,48 @@
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OrderFood</title>
-<style>
 html, body {
-  height: 100%;           /* <- ensure full viewport height */
+  height: 100%;
   margin: 0;
   font-family: Arial, sans-serif;
   scroll-behavior: auto;
   scroll-snap-type: y mandatory;
 }
 
-/* full container */
 .parent {
   width: 100%;
   min-height: 100vh;
   background: linear-gradient(to right,#ffffb3,#ff99ff);
   box-sizing: border-box;
-  scroll-snap-align: start;  
+  scroll-snap-align: start;
 }
 
-/* header */
 header {
-  line-height: 5px;
+  line-height: 1.2;
   background-color: #ff6666;
   color: black;
   text-align: center;
   padding: 20px;
   font-size: 30px;
-  word-spacing: 55px;
+  word-spacing: 30px;
   font-weight: bold;
 }
+header img {height:30px;width:auto;margin-right:10px;}
+header a {color:black;text-decoration:none;}
 
-/* header menu-bar img */
-header img {
-  height: 30px;
-  width: auto;
-  margin-right: 10px;
-}
-header a:link{
-color:black;
-text-decoration: none;
-}
-header a:visited{
-color:black;
-}
-
-/* content under header */
+/* main content split */
 .content {
   display: flex;
   width: 100%;
-  height: calc(100vh - 76px); /* full height minus header */
+  height: calc(100vh - 76px);
 }
-
-.left{
+.left, .right {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px;      /* keep space around text */
+  padding: 40px;
   box-sizing: border-box;
 }
-.left h1 {
-  font-size: 40px;     /* bigger heading */
-  font-weight: 700;    /* extra-bold weight */
-  letter-spacing: 2px;  /* optional spacing for style */
-}
-
-.left p {
-  font-size: 22px;      /* larger paragraph text */
-  font-weight: 200;    /* semi-bold paragraph */
-  line-height: 1.2    /* good readability */
-}
-.right{
-  flex:1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;         /* remove the gap for the image */
-  box-sizing: border-box;
-}
-
-/* make right image fill its half completely */
+.left h1 {font-size:40px;font-weight:700;letter-spacing:2px;}
+.left p {font-size:22px;font-weight:200;line-height:1.3;}
 .right img {
   width: 100%;
   height: 100%;
@@ -90,176 +50,47 @@ color:black;
   display: block;
 }
 
-/for second section/
-.images-section {
+/* second section */
+#secondpage {
+  height: 100vh;
+  background-image: linear-gradient(to right, #fef7ad, #feb3ee);
   display: flex;
-  flex-direction: column;        /* stack images vertically */
-  justify-content: center;       /* center vertically in section */
-  align-items: center;           /* center horizontally */
-  gap: 20px;                     /* space between images */
+  justify-content: space-evenly;
+  align-items: center;
 }
-
-.small-image {
-  width: 200px;                  /* smaller width */
-  height: 170px;          /* keep aspect ratio */
+#secondpage .left, #secondpage .right {
+  width: 50%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+#secondpage img {
+  width: 100%;
+  height: auto;
   object-fit: cover;
 }
 
-      #secondpage {
-        height: 100vh;
+/* ---------- MOBILE RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  header {font-size: 22px; word-spacing: 15px; padding:15px;}
+  .content {flex-direction: column; height: auto;}
+  .left, .right {width: 100%; padding:20px;}
+  .left h1 {font-size: 28px;}
+  .left p {font-size: 18px;}
+  .right img {height: auto; max-width: 100%;}
 
-        background-image: linear-gradient(to right, #fef7ad, #feb3ee);
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-      }
-
-      .left {
-        height: 100vh;
-        width: 50vw;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        padding: 10px;
-      }
-
-      .right {
-        height: 100vh;
-        width: 50vw;
-        display: flex;
-        justify-content: left;
-        align-items: center;
-        padding: 10px;
-      }
-
-      .left aside {
-        padding: 20px;
-        height: 70%;
-        width: 80%;
-        display: flex;
-        padding: 10px;
-      }
-
-      aside section {
-        margin: 10px;
-        height: 100%;
-        width: 50%;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        flex-direction: column;
-      }
-
-      aside section main {
-        padding: 10px;
-        height: 50%;
-        width: 100%;
-      }
-
-      #largepic{
-        padding: 12px;
-      }
-
-      .right main {
-        display: flex;
-        justify-content: left;
-        align-items: left;
-        flex-direction: column;
-        height: 35%;
-        width: 65%;
-
-        position: relative;
-        left: -50px;
-        background-color: #ff7070;
-      }
-
-      .right main section {
-        padding: 10px;
-      }
-	.right img {
-  margin-top: -20px;  /* pull image up equal to header height */
+  #secondpage {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+  #secondpage .left, #secondpage .right {
+    width: 100%;
+    height: auto;
+    padding: 10px 0;
+  }
+  #secondpage .right main {
+    width: 90%;
+    left: 0;
+  }
 }
-
-
-
-
-
-</style>
-</head>
-<body>
-
-<div class="parent">
-  <header>
-    <a href="#">Home</a>&nbsp;<a href="#">Order</a>&nbsp;<a href="#">Food</a>&nbsp;<a href="#">Restaurant</a>&nbsp;
-<a href="#">Testimonials</a>&nbsp;<a href="#">ContactUs</a>
-    <img src="menu-bar.png" alt="Menu Bar">
-  </header>
-
-  <div class="content">
-    <div class="left">
-      <div>
-        <h1>L O R E M&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I P S U M </h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus<br>
-        id est vitae dolor rhoncus tristique. Maecenas metus quam,<br>
-        rhoncus euismod lorem in, sollicitudin viverra eros. Donec<br>
-        dictum luctus quam ut tristique. Curabitur nec faucibus purus.<br>
-        Quisque congue sem nec justo mollis, in tincidunt erat pretium.<br>
-        Sed pulvinar, massa ac porta viverra.</p><br><br>
-	<button style="background-color: #ff8080; color: white; padding: 20px 90px; border: none; cursor: pointer;font-size: 15px;">
-  Click Me
-</button>
-      </div>
-    </div>
-<div class="right">
-<img src="pexels-robin-stickel-70497.jpg"" alt="image here">
-</div>
-</div>
-</div>
-<div class="parent">
-   <div id="secondpage">
-      <div class="left">
-        <aside>
-          <section>
-            <main>
-              <img src="./pexels-rachel-claire-6752433.jpg" alt="" height="100%" width="100%"  />
-            </main>
-            <main>
-              <img
-                src="./pexels-eva-bronzini-6141651.jpg"
-                alt=""
-                height="100%"
-                width="100%"
-              />
-            </main>
-          </section>
-          <section id="largepic">
-            <img
-              src="./pexels-mister-mister-3434523.jpg"
-              alt=""
-              height="100%"
-              width="100%"
-            />
-          </section>
-        </aside>
-      </div>
-      <div class="right">
-        <main>
-          <section>LOREM IPSUM</section>
-          <section>
-            <h2 class="lorem-title-small" style="text-align: left">
-              LOREM IPSUM SET ADMEMIR
-            </h2>
-          </section>
-          <section style="position: relative; top: -30px">
-            click
-            <span
-              ><img
-                src="./icons8-arrow-30.png"
-                alt=""
-                style="height: 20px; width: 20px; padding-left: 5px" /></span>
-          </section>
-        </main>
-      </div>
-    </div>
-</body>
-</html>
