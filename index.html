@@ -76,15 +76,29 @@ header a {color:black;text-decoration:none;}
   object-fit: cover;
 }
 
+
 /* ---------- MOBILE RESPONSIVE ---------- */
 @media (max-width: 768px) {
   header {font-size: 22px; word-spacing: 15px; padding:15px;}
-  .content {flex-direction: column; height: auto;}
-  .left, .right {width: 100%; padding:20px;}
-  .left h1 {font-size: 28px;}
-  .left p {font-size: 18px;}
-  .right img {height: auto; max-width: 100%;}
+  
+  /* keep first page side-by-side */
+  .content {
+    flex-direction: row;       /* ✅ stay side-by-side */
+    height: auto;
+  }
+  .left, .right {
+    width: 50%;                /* each takes half screen */
+    padding: 20px 10px;
+  }
+  .left h1 {font-size: 24px;}
+  .left p {font-size: 16px;}
+  .right img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
 
+  /* second page can still stack */
   #secondpage {
     flex-direction: column;
     height: auto;
@@ -100,6 +114,7 @@ header a {color:black;text-decoration:none;}
     left: 0;
   }
 }
+
 
 
       .left aside {
@@ -233,4 +248,5 @@ header a {color:black;text-decoration:none;}
     </div>
 </body>
 </html>
+
 
