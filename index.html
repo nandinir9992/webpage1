@@ -11,15 +11,17 @@
     /* ===== Navbar ===== */
     .nav-header {
       background-color: #ff7070;
-      padding: 12px 0;
-      text-align: center;
+      padding: 12px 20px;
+    }
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;  /* links left/center, burger right */
     }
     .nav-links {
       display: flex;
-      justify-content: center;   /* ✅ keep centered */
-      align-items: center;
-      gap: clamp(10px, 4vw, 60px);
       list-style: none;
+      gap: clamp(10px, 4vw, 60px);
       flex-wrap: wrap;
     }
     .nav-links a {
@@ -28,35 +30,30 @@
       font-weight: bold;
       text-transform: uppercase;
       color: #000;
-      white-space: nowrap;
       padding: 6px 10px;
-      transition: all 0.3s ease;
+      transition: background 0.3s ease;
     }
     .nav-links a:hover {
       background: rgba(255, 255, 255, 0.3);
       border-radius: 5px;
     }
-    .hamburger { font-size: 18px; font-weight: bold; }
+    .hamburger {
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
     /* ===== First Page ===== */
     #firstpage {
       display: flex;
       flex-direction: row;
-      height: 90vh;  /* ✅ fixed height like design */
+      height: 90vh;
     }
     #left, #right {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-    .gradient-textbox {
-      background: rgba(255,255,255,0.7);
-      padding: 14px;
-      border-radius: 8px;
-      font-size: clamp(12px, 2vw, 16px);
-      margin-bottom: 14px;
-      line-height: 1.5;
     }
     #left {
       background: linear-gradient(to right, #fdf2a5, #ffc6c7);
@@ -69,7 +66,14 @@
       margin-bottom: 12px;
       color: #000;
     }
-    
+    .gradient-textbox {
+      background: rgba(255,255,255,0.7);
+      padding: 14px;
+      border-radius: 8px;
+      font-size: clamp(12px, 2vw, 16px);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
     button {
       background: #ff6b6b;
       border: none;
@@ -81,16 +85,11 @@
       text-transform: uppercase;
     }
 
-    /* ✅ Right image fills full half */
-    #right {
-      height: 100%;
-      width: 100%;
-    }
+    /* Right image fills full half */
     #right img {
       width: 100%;
       height: 100%;
-      object-fit: cover;   /* ✅ cover full space */
-      border-radius: 0;    /* no rounding */
+      object-fit: cover;
     }
 
     /* ===== Second Page ===== */
@@ -136,7 +135,7 @@
     /* ===== Responsive tweaks ===== */
     @media (max-width: 768px) {
       #firstpage, #secondpage { flex-direction: column; }
-      #firstpage { height: auto; } /* stack gracefully */
+      #firstpage { height: auto; }
       .left img { height: 120px; }
     }
     @media (max-width: 480px) {
@@ -151,7 +150,7 @@
 </head>
 <body>
   <header class="nav-header">
-    <nav>
+    <nav class="nav-bar">
       <ul class="nav-links">
         <li><a href="#">Home</a></li>
         <li><a href="#">Order</a></li>
@@ -159,8 +158,8 @@
         <li><a href="#">Restaurant</a></li>
         <li><a href="#">Testimonials</a></li>
         <li><a href="#">Contact Us</a></li>
-        <li><span class="hamburger">≡</span></li>
       </ul>
+      <span class="hamburger">≡</span>
     </nav>
   </header>
 
